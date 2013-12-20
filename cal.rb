@@ -1,10 +1,6 @@
-#!/usr/bin/env ruby
-# -*- ruby -*-
+class Calendar
 
-require 'rake/testtask'
-Rake::TestTask.new() do |t|
-  t.pattern = "test/test_*.rb"
+  def self.zeller(month, year)
+  end
+
 end
-
-desc "Run tests"
-task :default => :test
