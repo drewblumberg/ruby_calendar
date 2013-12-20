@@ -111,4 +111,9 @@ class TestCalendarIntegration < MiniTest::Unit::TestCase
     assert shell_output.include? "January 2012"
   end
 
+  def test_argument_capturing_only_year
+    shell_output = `ruby cal.rb 2012`
+    assert shell_output.include? "2012"
+  end
+
 end
