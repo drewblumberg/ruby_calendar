@@ -1,13 +1,11 @@
 class Month
   @@month_nums = [13,14,3,4,5,6,7,8,9,10,11,12]
 
-  def self.zeller(month, year)
+  def self.zeller(month, year, day=1)
     m = @@month_nums[month-1]
-    year = year - 1 if m == 13 or m == 14
-    k = year % 100
-    j = (year/100).floor
+    year -= 1 if m == 13 or m == 14
 
-    h = (1 + (13/5*(m+1)).floor + k + (k/4).floor + (j/4).floor - 2 * j) % 7
+    h = (day + (26 * (m+1) / 10).floor + year + (year/4).floor + 6*(year/100).floor + (year/400).floor) % 7
 
     return h
   end

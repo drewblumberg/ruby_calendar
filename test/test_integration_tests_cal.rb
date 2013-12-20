@@ -3,10 +3,8 @@ require 'minitest/autorun'
 
 class TestCalendarIntegration < MiniTest::Unit::TestCase
   def test_no_input_from_user
-    shell_output = ""
-    IO.popen('ruby cal.rb', 'r+') do |pipe|
-      shell_output = pipe.read
-    end
+    shell_output = `ruby cal.rb`
+
     expected_output = <<EOS
    December 2013
 Su Mo Tu We Th Fr Sa
