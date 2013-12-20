@@ -45,4 +45,9 @@ class TestMonth < Minitest::Unit::TestCase
     assert_equal 5, day
   end
 
+  def test_month_year_2000
+    day = Month.zeller(1,2000)
+    assert_equal 0, day
+  end
+
 end
