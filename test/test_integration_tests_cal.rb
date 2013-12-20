@@ -100,12 +100,6 @@ class TestCalendarIntegration < MiniTest::Unit::TestCase
 #     assert_equal shell_output, expected_output
 #   end
 
-#   def test_outside_of_scope
-#     shell_output = `ruby cal.rb 1 3005`
-#     expected_output = "The Year 3005 is not between 1800 and 3000. Try again."
-#     assert_equal shell_output, expected_output
-#   end
-
   def test_argument_capturing_month_and_year
     shell_output = `ruby cal.rb 1 2012`
     assert shell_output.include? "January 2012"
@@ -114,6 +108,22 @@ class TestCalendarIntegration < MiniTest::Unit::TestCase
   def test_argument_capturing_only_year
     shell_output = `ruby cal.rb 2012`
     assert shell_output.include? "2012"
+  end
+
+  def test_argument_does_not_contain_chars_first_arg
+    exception = assert_raises(ArgumentError) do
+      Month.new("abc")
+    end
+
+    assert_match(/Arguments can only contain integers/, exception.message)
+  end
+
+  def test_ony_one_argument_is_a_year_between_1800_and_3000
+    exception = assert_raises(ArgumentError) do
+      Month.new(10)
+    end
+
+    assert_match(/Year must be between 1800 and 3000/, exception.message)
   end
 
 end
