@@ -10,6 +10,8 @@ class Month
 
     raise ArgumentError, "Month must be between 1 and 12" if args.length == 2 and (args[0].to_i < 1 or args[0].to_i > 12)
 
+    raise ArgumentError, "Year must be between 1800 and 3000" if args.length == 2 and (args[1].to_i < 1800 or args[1].to_i > 3000)
+
     raise ArgumentError, "Only two arguments allowed, month and year" if args.length > 2
   end
 
