@@ -118,12 +118,20 @@ class TestCalendarIntegration < MiniTest::Unit::TestCase
     assert_match(/Arguments can only contain integers/, exception.message)
   end
 
-  def test_ony_one_argument_is_a_year_between_1800_and_3000
+  def test_only_one_argument_is_a_year_between_1800_and_3000
     exception = assert_raises(ArgumentError) do
       Month.new(10)
     end
 
     assert_match(/Year must be between 1800 and 3000/, exception.message)
+  end
+
+  def test_two_arguments_for_correct_month
+    exception = assert_raises(ArgumentError) do
+      Month.new(2012, 2012)
+    end
+
+    assert_match(/Month must be between 1 and 12/, exception.message)
   end
 
 end
