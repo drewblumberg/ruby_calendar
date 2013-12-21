@@ -134,4 +134,20 @@ class TestCalendarIntegration < MiniTest::Unit::TestCase
     assert_match(/Month must be between 1 and 12/, exception.message)
   end
 
+  def test_two_arguments_for_correct_month
+    exception = assert_raises(ArgumentError) do
+      Month.new(2012, 2012)
+    end
+
+    assert_match(/Month must be between 1 and 12/, exception.message)
+  end
+
+  def test_for_more_than_two_arguments
+    exception = assert_raises(ArgumentError) do
+      Month.new(1, 2012, 1)
+    end
+
+    assert_match(/Only two arguments allowed, month and year/, exception.message)
+  end
+
 end
