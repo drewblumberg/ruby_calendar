@@ -3,7 +3,7 @@ class Month
 
   def initialize(*args)
     args.each do |arg|
-      raise ArgumentError, "Arguments can only contain integers" if arg.to_i == 0
+      raise ArgumentError, "Arguments can only contain positive, non-zero integers" if arg.to_i == 0
     end
 
     raise ArgumentError, "Year must be between 1800 and 3000" if args.length == 1 and (args[0].to_i < 1800 or args[0].to_i > 3000)
@@ -13,6 +13,7 @@ class Month
     raise ArgumentError, "Year must be between 1800 and 3000" if args.length == 2 and (args[1].to_i < 1800 or args[1].to_i > 3000)
 
     raise ArgumentError, "Only two arguments allowed, month and year" if args.length > 2
+
   end
 
   def self.zeller(month, year, day=1)
@@ -22,6 +23,10 @@ class Month
     h = (day + (26 * (m+1) / 10).floor + year + (year/4).floor + 6*(year/100).floor + (year/400).floor) % 7
 
     return h
+  end
+
+  def get_zeller(month, year, day=1)
+    self.class.zeller(month, year, day)
   end
 
 end

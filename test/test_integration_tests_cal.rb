@@ -115,7 +115,7 @@ class TestCalendarIntegration < MiniTest::Unit::TestCase
       Month.new("abc")
     end
 
-    assert_match(/Arguments can only contain integers/, exception.message)
+    assert_match(/Arguments can only contain positive, non-zero integers/, exception.message)
   end
 
   def test_only_one_argument_is_a_year_between_1800_and_3000
@@ -156,6 +156,13 @@ class TestCalendarIntegration < MiniTest::Unit::TestCase
     end
 
     assert_match(/Only two arguments allowed, month and year/, exception.message)
+  end
+
+  def test_presence_of_header_row
+    shell_output = `ruby cal.rb 1 2012`
+    expected_output = "Su Mo Tu We Th Fr Sa"
+
+    assert shell_output.include? expected_output
   end
 
 end
