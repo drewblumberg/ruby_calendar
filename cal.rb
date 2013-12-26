@@ -8,9 +8,14 @@ if ARGV.length == 2
   month = ARGV[0].to_i
   year = ARGV[1].to_i
   calendar_month = Month.new(month, year)
-else
+elsif ARGV.length == 1
   year = ARGV[0].to_i
   calendar_month = Month.new(year)
+else
+  time = Time.new
+  month = time.month
+  year = time.year
+  calendar_month = Month.new(month, year)
 end
 
 
@@ -55,7 +60,7 @@ if calendar_month
         end
       end
 
-      formatted_month << " " unless new_line
+      formatted_month << " " unless new_line or i == day_array[month-1]
 
       i+=1
     end
