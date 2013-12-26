@@ -1,4 +1,6 @@
 class Month
+  attr_accessor :month_num_days
+
   @@month_nums = [13,14,3,4,5,6,7,8,9,10,11,12]
 
   def initialize(*args)
@@ -6,13 +8,15 @@ class Month
       raise ArgumentError, "Arguments can only contain positive, non-zero integers" if arg.to_i == 0
     end
 
+    raise ArgumentError, "Only two arguments allowed, month and year" if args.length > 2
+
     raise ArgumentError, "Year must be between 1800 and 3000" if args.length == 1 and (args[0].to_i < 1800 or args[0].to_i > 3000)
 
     raise ArgumentError, "Month must be between 1 and 12" if args.length == 2 and (args[0].to_i < 1 or args[0].to_i > 12)
 
     raise ArgumentError, "Year must be between 1800 and 3000" if args.length == 2 and (args[1].to_i < 1800 or args[1].to_i > 3000)
 
-    raise ArgumentError, "Only two arguments allowed, month and year" if args.length > 2
+    @month_num_days = [31,28,31,30,31,30,31,31,30,31,30,31]
 
   end
 
@@ -27,6 +31,27 @@ class Month
 
   def get_zeller(month, year, day=1)
     self.class.zeller(month, year, day)
+  end
+
+  def initial_spaces(zeller_number)
+    case zeller_number
+    when 0
+      spaces = "                  "
+    when 1
+      spaces = ""
+    when 2
+      spaces = "   "
+    when 3
+      spaces = "      "
+    when 4
+      spaces = "         "
+    when 5
+      spaces = "            "
+    else
+      spaces = "               "
+    end
+
+    spaces
   end
 
 end
