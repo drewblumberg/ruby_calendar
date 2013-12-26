@@ -20,8 +20,17 @@ end
 
 
 # Put Calendar to shell
+
 start_day = calendar_month.get_zeller(month, year) if month
 day_array = calendar_month.month_num_days if month
+
+if year % 4 == 0 and month == 2
+  if year % 100 == 0
+    day_array[1] = 29 if year % 400 == 0
+  else
+    day_array[1] = 29
+  end
+end
 
 if calendar_month
   if month.nil?
