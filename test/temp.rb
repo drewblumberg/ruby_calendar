@@ -124,14 +124,3 @@ end
 
 puts formatted_months[0] if formatted_months.length == 1
 puts formatted_months[3] + " " + formatted_months[4] if formatted_months.length > 1
-
-# temp_string = ""
-# formatted_months.each_with_index do |formatted_month, index|
-#   temp_string << formatted_month
-#   if (index + 1) % 3 != 0
-#     temp_string << " " 
-#   else
-#     puts temp_string
-#     puts "\n"
-#   end
-# end

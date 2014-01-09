@@ -37,19 +37,19 @@ class Month
   def initial_spaces(zeller_number)
     case zeller_number
     when 0
-      spaces = "                  "
+      spaces = " " * 18
     when 1
       spaces = ""
     when 2
-      spaces = "   "
+      spaces = " " * 3
     when 3
-      spaces = "      "
+      spaces = " " * 6
     when 4
-      spaces = "         "
+      spaces = " " * 9
     when 5
-      spaces = "            "
+      spaces = " " * 12
     else
-      spaces = "               "
+      spaces = " " * 15
     end
 
     spaces
