@@ -35,24 +35,8 @@ class Month
   end
 
   def initial_spaces(zeller_number)
-    case zeller_number
-    when 0
-      spaces = " " * 18
-    when 1
-      spaces = ""
-    when 2
-      spaces = " " * 3
-    when 3
-      spaces = " " * 6
-    when 4
-      spaces = " " * 9
-    when 5
-      spaces = " " * 12
-    else
-      spaces = " " * 15
-    end
-
-    spaces
+    spaces = " " * 18 if zeller_number == 0
+    spaces = "" if zeller_number == 1
+    spaces = " " * ((zeller_number - 1) * 3) if zeller_number > 1
   end
-
 end
