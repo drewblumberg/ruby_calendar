@@ -35,8 +35,12 @@ class Month
   end
 
   def initial_spaces(zeller_number)
-    spaces = " " * 18 if zeller_number == 0
-    spaces = "" if zeller_number == 1
-    spaces = " " * ((zeller_number - 1) * 3) if zeller_number > 1
+    if zeller_number == 0
+      spaces = " " * 18
+    elsif zeller_number == 1
+      spaces = ""
+    else
+      spaces = " " * ((zeller_number - 1) * 3)
+    end
   end
 end
